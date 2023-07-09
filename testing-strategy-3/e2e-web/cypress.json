@@ -1,0 +1,15 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "testFiles": "**/*.feature",
+  "chromeWebSecurity": false,
+  "defaultCommandTimeout": 10000,
+  "video": false,
+  "retries": {
+      "runMode": 1
+  },
+  "env": {
+    "EXAMPLE_ENV": "https://google.com"
+  },
+  "viewportWidth": 1280,
+  "viewportHeight": 800
+}

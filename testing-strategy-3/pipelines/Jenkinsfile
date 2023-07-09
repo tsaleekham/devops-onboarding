@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+
+    tools {nodejs "NodeJS"}
+
+    environment {
+        PROJECT_PATH="${env.JENKINS_HOME}/workspace/OnBoardingPart3/testing-strategy-3"
+        SCRIPTS_PATH="${PROJECT_PATH}/scripts"
+        DEV="dev"
+        ALPHA="alpha"
+        PREPROD="preprod"
+        PROD="prod"
+    }
+
+    stages {
+        stage('Build') {
+           steps {
+                dir("${SCRIPTS_PATH}") {
+                    sh """
+                    echo "Build"
+                    """
+                }
+            }
+        }
+        stage('Test environment DEV') {
+            steps {
+                dir("${SCRIPTS_PATH}") {
+                   sh """
+                    echo "Test"
+                    """
+                }
+            }
+        }
+        stage('Deployment') {
+            steps {
+                dir("${SCRIPTS_PATH}") {
+                   sh """
+                    echo "Deployment"
+                    """
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  enable-underscores-in-headers: "true"
+  ignore-invalid-headers: "false"
+kind: ConfigMap
+metadata:
+  name: ingress-nginx-controller
