@@ -30,7 +30,7 @@ pipeline {
         }
         stage('Contract Testing') {
             when {
-                expression: { param.ENABLE_CONTRACT_TEST }
+                expression { param.ENABLE_CONTRACT_TEST }
             }
             steps {
                 echo 'Testing..'
