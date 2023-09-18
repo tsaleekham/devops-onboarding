@@ -18,8 +18,8 @@ pipeline {
         stage('Build') {
             steps {
                 sh """
-                echo 'value from environment ${E2E_MODE}'
-                echo 'value from parameters ${params.ENV}'
+                echo 'value from environment: ${E2E_MODE}'
+                echo 'value from parameters: ${params.ENV}'
                 """
             }
         }
