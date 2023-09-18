@@ -19,7 +19,7 @@ pipeline {
             steps {
                 sh """
                 echo 'value from environment ${E2E_MODE}'
-                echo 'value from parameters ${param.ENV}'
+                echo 'value from parameters ${params.ENV}'
                 """
             }
         }
@@ -30,7 +30,7 @@ pipeline {
         }
         stage('Contract Testing') {
             when {
-                expression { param.ENABLE_CONTRACT_TEST }
+                expression { params.ENABLE_CONTRACT_TEST }
             }
             steps {
                 echo 'Testing..'
