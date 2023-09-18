@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+
+    environment {
+        E2E_MODE = "ci"
+        DEV = "dev"
+        ALPHA = "alpha"
+        PREPROD = "preprod"
+    }
+
+    parameters {
+        string(name: 'VERSION', description: 'The commit target to build.', defaultValue: 'latest')
+        booleanParam(name: 'ENABLE_CONTRACT_TEST', description: 'Enable contract testing (will remove this after contract is updated)', defaultValue: false)
+        choice(name: 'ENV', choices: ['DEV', 'SIT', 'UAT'], description: 'environment')
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                sh """
+                echo 'value from environment ${E2E_MODE}'
+                echo 'value from parameters ${param.ENV}'
+                """
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Contract Testing') {
+            when {
+                expression: { param.ENABLE_CONTRACT_TEST }
+            }
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh """
+                echo 'Deploying....${params.VERSION}'
+                """
+            }
+        }
+    }
+}
