@@ -27,6 +27,7 @@ pipeline {
             parallel {
                 stage('Unit Testing') {
                     steps {
+                        sh 'sleep 10'
                         echo 'Testing..'
                     }
                 }
@@ -35,6 +36,7 @@ pipeline {
                         expression { params.ENABLE_CONTRACT_TEST }
                     }
                     steps {
+                        sh 'sleep 5'
                         echo 'Testing..'
                     }
                 }
