@@ -34,7 +34,7 @@ pipeline {
                 dir("${WEB_PATH}") {
                     sh """
                     npm install
-                    npm run start
+                    npm run start &
                     """
                 }
                 dir("${TEST_PATH}") {
