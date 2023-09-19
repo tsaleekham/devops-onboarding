@@ -10,6 +10,7 @@ pipeline {
         ALPHA="alpha"
         PREPROD="preprod"
         PROD="prod"
+        WEB_PATH="${PROJECT_PATH}/web"
     }
 
     stages {
@@ -27,6 +28,11 @@ pipeline {
                 dir("${SCRIPTS_PATH}") {
                    sh """
                     echo "Test"
+                    """
+                }
+                dir("${WEB_PATH}") {
+                    sh """
+                    npm install
                     """
                 }
             }
