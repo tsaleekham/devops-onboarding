@@ -43,16 +43,18 @@ pipeline {
                     """
                 }
             }
-        }
-        stage('Clean up') {
-            steps {
-                dir("${WEB_PATH}") {
-                    sh """
-                    kill $(lsof -t -i:3000)
-                    """
+            post {
+                always {
+                    dir("${WEB_PATH}") {
+                        sh """
+                        kill $(lsof -t -i:3000)
+                        """
+                    }
+                    
                 }
             }
         }
+        
         // stage('Deployment') {
         //     steps {
         //         dir("${SCRIPTS_PATH}") {
