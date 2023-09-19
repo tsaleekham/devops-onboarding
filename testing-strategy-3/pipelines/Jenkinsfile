@@ -11,6 +11,7 @@ pipeline {
         PREPROD="preprod"
         PROD="prod"
         WEB_PATH="${PROJECT_PATH}/web"
+        TEST_PATH="${PROJECT_PATH}/e2e-web"
     }
 
     stages {
@@ -33,6 +34,13 @@ pipeline {
                 dir("${WEB_PATH}") {
                     sh """
                     npm install
+                    npm run start
+                    """
+                }
+                dir("${TEST_PATH}") {
+                    sh """
+                    npm install cypress
+                    npm run test
                     """
                 }
             }
