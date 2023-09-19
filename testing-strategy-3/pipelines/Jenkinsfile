@@ -4,7 +4,7 @@ pipeline {
     tools {nodejs "NodeJS"}
 
     environment {
-        PROJECT_PATH="${env.JENKINS_HOME}/workspace/OnBoardingPart3/testing-strategy-3"
+        PROJECT_PATH="${env.JENKINS_HOME}/workspace/testing-strategy-3/testing-strategy-3"
         SCRIPTS_PATH="${PROJECT_PATH}/scripts"
         DEV="dev"
         ALPHA="alpha"
@@ -14,22 +14,22 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
-           steps {
-                dir("${SCRIPTS_PATH}") {
-                    sh """
-                    echo "Build"
-                    """
-                }
-            }
-        }
+        // stage('Build') {
+        //    steps {
+        //         dir("${SCRIPTS_PATH}") {
+        //             sh """
+        //             echo "Build"
+        //             """
+        //         }
+        //     }
+        // }
         stage('Test environment DEV') {
             steps {
-                dir("${SCRIPTS_PATH}") {
-                   sh """
-                    echo "Test"
-                    """
-                }
+                // dir("${SCRIPTS_PATH}") {
+                //    sh """
+                //     echo "Test"
+                //     """
+                // }
                 dir("${WEB_PATH}") {
                     sh """
                     npm install
@@ -37,14 +37,14 @@ pipeline {
                 }
             }
         }
-        stage('Deployment') {
-            steps {
-                dir("${SCRIPTS_PATH}") {
-                   sh """
-                    echo "Deployment"
-                    """
-                }
-            }
-        }
+        // stage('Deployment') {
+        //     steps {
+        //         dir("${SCRIPTS_PATH}") {
+        //            sh """
+        //             echo "Deployment"
+        //             """
+        //         }
+        //     }
+        // }
     }
 }
