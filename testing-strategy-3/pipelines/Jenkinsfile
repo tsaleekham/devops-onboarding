@@ -45,9 +45,9 @@ pipeline {
             }
             post {
                 always {
-                    dir("${WEB_PATH}") {
+                    dir("${SCRIPTS_PATH}") {
                         sh """
-                        ../scripts/application-management.sh close
+                        ./application-management.sh close
                         """
                     }
                     
