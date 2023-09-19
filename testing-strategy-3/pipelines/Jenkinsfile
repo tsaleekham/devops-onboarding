@@ -33,7 +33,6 @@ pipeline {
                 // }
                 dir("${WEB_PATH}") {
                     sh """
-                    npm install
                     npm run start &
                     """
                 }
@@ -52,7 +51,7 @@ pipeline {
                     }
                     dir("${SCRIPTS_PATH}") {
                         sh """
-                        ./report.sh generate
+                        npm run generate-report 
                         """
                     }
                 }
