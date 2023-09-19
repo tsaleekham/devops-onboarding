@@ -53,6 +53,7 @@ pipeline {
                         sh """
                         npm run generate-report
                         """
+                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/Users/tent/.jenkins/workspace/testing-strategy-3/testing-strategy-3/e2e-web/cypress/cucumber-json', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
                     }
                 }
             }
