@@ -39,8 +39,16 @@ pipeline {
                 }
                 dir("${TEST_PATH}") {
                     sh """
-                    npm install cypress
                     npm run test
+                    """
+                }
+            }
+        }
+        stage('Clean up') {
+            steps {
+                dir("${WEB_PATH}") {
+                    sh """
+                    kill $(lsof -t -i:3000)
                     """
                 }
             }
