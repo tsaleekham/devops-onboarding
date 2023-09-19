@@ -49,9 +49,9 @@ pipeline {
                         ./application-management.sh close
                         """
                     }
-                    dir("${SCRIPTS_PATH}") {
+                    dir("${TEST_PATH}") {
                         sh """
-                        npm run generate-report 
+                        npm run generate-report
                         """
                     }
                 }
