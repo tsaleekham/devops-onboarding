@@ -50,7 +50,11 @@ pipeline {
                         ./application-management.sh close
                         """
                     }
-                    
+                    dir("${SCRIPTS_PATH}") {
+                        sh """
+                        ./report.sh generate
+                        """
+                    }
                 }
             }
         }
