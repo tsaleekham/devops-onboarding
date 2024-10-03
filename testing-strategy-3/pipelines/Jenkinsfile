@@ -3,16 +3,16 @@ pipeline {
 
     // tools {nodejs "NodeJS"}
 
-    // environment {
-    //     PROJECT_PATH="${env.JENKINS_HOME}/workspace/testing-strategy-3/testing-strategy-3"
-    //     SCRIPTS_PATH="${PROJECT_PATH}/scripts"
+    environment {
+        PROJECT_PATH="${env.JENKINS_HOME}/workspace/testing-strategy-3/testing-strategy-3"
+        SCRIPTS_PATH="${PROJECT_PATH}/scripts"
     //     DEV="dev"
     //     ALPHA="alpha"
     //     PREPROD="preprod"
     //     PROD="prod"
     //     WEB_PATH="${PROJECT_PATH}/web"
     //     TEST_PATH="${PROJECT_PATH}/e2e-web"
-    // }
+    }
 
     stages {
         stage('Build') {
