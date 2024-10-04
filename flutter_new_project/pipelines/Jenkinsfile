@@ -2,6 +2,9 @@ pipeline {
     agent any
 
     // tools {nodejs "NodeJS"}
+    tools {
+        flutter "flutter"
+    }
 
     environment {
         PROJECT_PATH="${env.JENKINS_HOME}/workspace/flutter_new_project/flutter_new_project"
