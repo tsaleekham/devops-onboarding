@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+
+    // tools {nodejs "NodeJS"}
+
+    environment {
+        PROJECT_PATH="${env.JENKINS_HOME}/workspace/flutter_new_project/flutter_new_project"
+        SCRIPTS_PATH="${PROJECT_PATH}/scripts"
+    //     DEV="dev"
+    //     ALPHA="alpha"
+    //     PREPROD="preprod"
+    //     PROD="prod"
+    //     WEB_PATH="${PROJECT_PATH}/web"
+    //     TEST_PATH="${PROJECT_PATH}/e2e-web"
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                echo "Build"
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo "Test"
+            }
+        }
+        
+        stage('Deployment') {
+            steps {
+                dir("${SCRIPTS_PATH}") {
+                   sh """
+                    echo "Deployment"
+                    """
+                }
+            }
+        }
+    }
+}
