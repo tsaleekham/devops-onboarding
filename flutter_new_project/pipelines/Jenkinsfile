@@ -1,39 +1,14 @@
 pipeline {
     agent any
 
-    // tools {nodejs "NodeJS"}
-    // tools {
-    //     flutter 'flutter'
-    // }
-
     environment {
         PATH = "$HOME/development/flutter/bin:$PATH"
         PROJECT_PATH = "${env.JENKINS_HOME}/workspace/test"
         MOBILE_PATH = "${PROJECT_PATH}/flutter_new_project"
         MOBILE_SCRIPTS_PATH = "${MOBILE_PATH}/scripts"
-        
-        // BRANCH_NAME="main"
-    //     DEV="dev"
-    //     ALPHA="alpha"
-    //     PREPROD="preprod"
-    //     PROD="prod"
-    //     WEB_PATH="${PROJECT_PATH}/web"
-    //     TEST_PATH="${PROJECT_PATH}/e2e-web"
     }
 
     stages {
-        // stage('Pulling') {
-        //     steps {
-        //         dir(ROOT_PATH) {
-        //             script {
-        //                 echo 'Pulling stage'
-        //                 sh "git checkout ${BRANCH_NAME}"
-        //                 sh "git pull --rebase origin ${BRANCH_NAME}"
-        //             }
-        //         }
-        //     }
-        // }
-
         stage('Build') {
             steps {
                 dir(MOBILE_PATH) {
@@ -54,7 +29,6 @@ pipeline {
                         flutter test test/widget_test.dart
                     '''
                 }
-                
             }
         }
 
