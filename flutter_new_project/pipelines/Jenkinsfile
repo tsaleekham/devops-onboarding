@@ -10,6 +10,7 @@ pipeline {
         PROJECT_PATH = "${env.JENKINS_HOME}/workspace/flutter_new_project/flutter_new_project"
         SCRIPTS_PATH = "${PROJECT_PATH}/scripts"
         PATH = "$HOME/development/flutter/bin:$PATH"
+        BRANCH_NAME="main"
     //     DEV="dev"
     //     ALPHA="alpha"
     //     PREPROD="preprod"
@@ -19,16 +20,21 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
+        stage('Pulling') {
             steps {
-                echo 'Checking out the repository'
-                checkout scm
+                dir(PROJECT_PATH) {
+                    script {
+                        echo 'Pulling stage'
+                        sh "git checkout ${BRANCH_NAME}"
+                        sh "git pull --rebase origin ${BRANCH_NAME}"
+                    }
+                }
             }
         }
 
         stage('Build') {
             steps {
-                dir("${PROJECT_PATH}") {
+                dir(PROJECT_PATH) {
                     echo 'Build stage'
                     sh '''
                         flutter pub get
@@ -40,7 +46,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                dir("${PROJECT_PATH}") {
+                dir(PROJECT_PATH) {
                     echo 'Test stage'
                     sh '''
                         flutter test test/widget_test.dart
