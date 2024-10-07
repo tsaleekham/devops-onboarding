@@ -2,13 +2,14 @@ pipeline {
     agent any
 
     // tools {nodejs "NodeJS"}
-    tools {
-        flutter "flutter"
-    }
+    // tools {
+    //     flutter 'flutter'
+    // }
 
     environment {
-        PROJECT_PATH="${env.JENKINS_HOME}/workspace/flutter_new_project/flutter_new_project"
-        SCRIPTS_PATH="${PROJECT_PATH}/scripts"
+        PROJECT_PATH = "${env.JENKINS_HOME}/workspace/flutter_new_project/flutter_new_project"
+        SCRIPTS_PATH = "${PROJECT_PATH}/scripts"
+        PATH = "$HOME/development/flutter/bin:$PATH"
     //     DEV="dev"
     //     ALPHA="alpha"
     //     PREPROD="preprod"
@@ -20,25 +21,25 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "Build"
+                echo 'Build stage'
             }
         }
 
         stage('Test') {
             steps {
-                echo "Test"
-                sh """
-                    fvm flutter test test/widget_test.dart
-                """
+                echo 'Test stage'
+                sh '''
+                    flutter test test/widget_test.dart
+                '''
             }
         }
-        
+
         stage('Deployment') {
             steps {
                 dir("${SCRIPTS_PATH}") {
-                   sh """
-                    echo "Deployment"
-                    """
+                    sh '''
+                        echo "Deployment"
+                    '''
                 }
             }
         }
