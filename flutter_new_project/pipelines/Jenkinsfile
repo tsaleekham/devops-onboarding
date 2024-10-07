@@ -27,10 +27,13 @@ pipeline {
 
         stage('Test') {
             steps {
-                echo 'Test stage'
-                sh '''
-                    flutter test test/widget_test.dart
-                '''
+                dir("${PROJECT_PATH}") {
+                    echo 'Test stage'
+                    sh '''
+                        flutter test test/widget_test.dart
+                    '''
+                }
+                
             }
         }
 
