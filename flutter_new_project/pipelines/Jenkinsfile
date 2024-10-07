@@ -7,11 +7,12 @@ pipeline {
     // }
 
     environment {
-        PROJECT_PATH = "${env.JENKINS_HOME}/workspace/flutter_new_project/flutter_new_project"
-        SCRIPTS_PATH = "${PROJECT_PATH}/scripts"
         PATH = "$HOME/development/flutter/bin:$PATH"
-        BRANCH_NAME="main"
-        ROOT_PATH="${env.JENKINS_HOME}/workspace"
+        PROJECT_PATH = "${env.JENKINS_HOME}/workspace/test"
+        MOBILE_PATH = "${PROJECT_PATH}/flutter_new_project"
+        MOBILE_SCRIPTS_PATH = "${MOBILE_PATH}/scripts"
+        
+        // BRANCH_NAME="main"
     //     DEV="dev"
     //     ALPHA="alpha"
     //     PREPROD="preprod"
@@ -21,21 +22,21 @@ pipeline {
     }
 
     stages {
-        stage('Pulling') {
-            steps {
-                dir(ROOT_PATH) {
-                    script {
-                        echo 'Pulling stage'
-                        sh "git checkout ${BRANCH_NAME}"
-                        sh "git pull --rebase origin ${BRANCH_NAME}"
-                    }
-                }
-            }
-        }
+        // stage('Pulling') {
+        //     steps {
+        //         dir(ROOT_PATH) {
+        //             script {
+        //                 echo 'Pulling stage'
+        //                 sh "git checkout ${BRANCH_NAME}"
+        //                 sh "git pull --rebase origin ${BRANCH_NAME}"
+        //             }
+        //         }
+        //     }
+        // }
 
         stage('Build') {
             steps {
-                dir(PROJECT_PATH) {
+                dir(MOBILE_PATH) {
                     echo 'Build stage'
                     sh '''
                         flutter pub get
@@ -47,7 +48,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                dir(PROJECT_PATH) {
+                dir(MOBILE_PATH) {
                     echo 'Test stage'
                     sh '''
                         flutter test test/widget_test.dart
@@ -59,7 +60,7 @@ pipeline {
 
         stage('Deployment') {
             steps {
-                dir("${SCRIPTS_PATH}") {
+                dir(MOBILE_PATH) {
                     sh '''
                         echo "Deployment"
                     '''
