@@ -28,11 +28,13 @@ pipeline {
 
         stage('Build') {
             steps {
-                echo 'Build stage'
-                sh '''
-                    flutter pub get
-                    flutter build apk --release
-                '''
+                dir("${PROJECT_PATH}") {
+                    echo 'Build stage'
+                    sh '''
+                        flutter pub get
+                        flutter build apk --release
+                    '''
+                }
             }
         }
 
