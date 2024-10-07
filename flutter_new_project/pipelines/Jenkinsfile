@@ -11,6 +11,7 @@ pipeline {
         SCRIPTS_PATH = "${PROJECT_PATH}/scripts"
         PATH = "$HOME/development/flutter/bin:$PATH"
         BRANCH_NAME="main"
+        ROOT_PATH="${env.JENKINS_HOME}/workspace"
     //     DEV="dev"
     //     ALPHA="alpha"
     //     PREPROD="preprod"
@@ -22,7 +23,7 @@ pipeline {
     stages {
         stage('Pulling') {
             steps {
-                dir(PROJECT_PATH) {
+                dir(ROOT_PATH) {
                     script {
                         echo 'Pulling stage'
                         sh "git checkout ${BRANCH_NAME}"
