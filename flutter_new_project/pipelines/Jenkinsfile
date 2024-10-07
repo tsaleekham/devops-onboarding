@@ -19,9 +19,20 @@ pipeline {
     }
 
     stages {
+        stage('Checkout') {
+            steps {
+                echo 'Checking out the repository'
+                checkout scm
+            }
+        }
+
         stage('Build') {
             steps {
                 echo 'Build stage'
+                sh '''
+                    flutter pub get
+                    flutter build apk --release
+                '''
             }
         }
 
