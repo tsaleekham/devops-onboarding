@@ -11,8 +11,14 @@ pipeline {
     stages {
         stage('Prepare') {
             steps {
+                dir(PROJECT_PATH) {
+                    sh '''
+                        git pull --rebase origin main
+                    '''
+                }
                 dir(MOBILE_PATH) {
                     sh '''
+                        
                         flutter pub get
                     '''
                 }
