@@ -9,10 +9,9 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage('Prepare') {
             steps {
                 dir(MOBILE_PATH) {
-                    echo 'Build stage'
                     sh '''
                         flutter pub get
                     '''
@@ -23,7 +22,6 @@ pipeline {
         stage('Test') {
             steps {
                 dir(MOBILE_PATH) {
-                    echo 'Test stage'
                     sh '''
                         flutter test test/widget_test.dart
                     '''
