@@ -15,7 +15,6 @@ pipeline {
                     echo 'Build stage'
                     sh '''
                         flutter pub get
-                        flutter build apk --release
                     '''
                 }
             }
