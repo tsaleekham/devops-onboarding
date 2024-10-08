@@ -4,7 +4,7 @@ pipeline {
     environment {
         PATH = "$HOME/development/flutter/bin:$PATH"
         PROJECT_PATH = "${env.JENKINS_HOME}/workspace/test"
-        MOBILE_PATH = "${PROJECT_PATH}/flutter_new_project"
+        MOBILE_PATH = "${PROJECT_PATH}/flutter-new-project"
         MOBILE_SCRIPTS_PATH = "${MOBILE_PATH}/scripts"
     }
 
